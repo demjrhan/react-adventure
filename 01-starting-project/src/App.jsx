@@ -3,12 +3,17 @@ import CoreConcept from "./components/CoreConcept/CoreConcept";
 import {CORE_CONCEPTS} from "./data";
 import "./components/CoreConcept/CoreConcept.css"
 import TabButton from "./components/TabButton";
+import {useState} from "react";
 
 function App() {
 
-    function onClick(argument){
-        console.log(argument);
+    const [tab, setTab] = useState("Examples");
+
+    function handleSelect(selectedButton) {
+        setTab(selectedButton);
+        console.log(tab);
     }
+
     return (
         <div>
             <Header/>
@@ -26,13 +31,21 @@ function App() {
                 <section id="examples">
                     <h2>Components</h2>
                     <menu>
-                        <TabButton onClick={() => onClick("Asd")}>Examples</TabButton>
-                        <TabButton>JSX</TabButton>
+                        <TabButton onClick={() => handleSelect("Example")}>Examples</TabButton>
+                        <TabButton onClick={() => handleSelect("jsx")}>JSX</TabButton>
                         <TabButton>Props</TabButton>
                         <TabButton>State</TabButton>
                     </menu>
-                </section>
+                    <div id="tab-content">
+                        <h3></h3>
+                        <p></p>
+                        <pre>
+                            <code>
 
+                            </code>
+                        </pre>
+                    </div>
+                </section>
             </main>
         </div>
     );
