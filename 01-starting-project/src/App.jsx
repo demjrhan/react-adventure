@@ -4,16 +4,30 @@ import {CORE_CONCEPTS} from "./data";
 import "./components/CoreConcept/CoreConcept.css"
 import TabButton from "./components/TabButton";
 import {useState} from "react";
+import {EXAMPLES} from "./data-with-examples";
 
 function App() {
 
-    const [tab, setTab] = useState("Examples");
+    const [selectedTab, setSelectedTab] = useState();
 
     function handleSelect(selectedButton) {
-        setTab(selectedButton);
-        console.log(tab);
+        setSelectedTab(selectedButton);
     }
 
+    let tabContent = <p>Please select a tab. :></p>
+    if (selectedTab) {
+        tabContent = <div id="tab-content">
+            <h3>{EXAMPLES[selectedTab].title}</h3>
+            <p>{EXAMPLES[selectedTab].description}</p>
+            <pre>
+                            <code>
+                                {EXAMPLES[selectedTab].code}
+                            </code>
+                        </pre>
+        </div>
+
+
+    }
     return (
         <div>
             <Header/>
@@ -31,20 +45,14 @@ function App() {
                 <section id="examples">
                     <h2>Components</h2>
                     <menu>
-                        <TabButton onClick={() => handleSelect("Example")}>Examples</TabButton>
+                        <TabButton onClick={() => handleSelect("components")}>Examples</TabButton>
                         <TabButton onClick={() => handleSelect("jsx")}>JSX</TabButton>
-                        <TabButton>Props</TabButton>
-                        <TabButton>State</TabButton>
+                        <TabButton onClick={() => handleSelect("props")}>Props</TabButton>
+                        <TabButton onClick={() => handleSelect("state")}>State</TabButton>
                     </menu>
-                    <div id="tab-content">
-                        <h3></h3>
-                        <p></p>
-                        <pre>
-                            <code>
 
-                            </code>
-                        </pre>
-                    </div>
+                    {tabContent}
+
                 </section>
             </main>
         </div>
