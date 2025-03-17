@@ -1,9 +1,9 @@
 import Header from "./components/Header";
 import CoreConcept from "./components/CoreConcept/CoreConcept";
-import {CORE_CONCEPTS} from "./data";
 import "./components/CoreConcept/CoreConcept.css"
 import TabButton from "./components/TabButton";
 import {useState} from "react";
+import {CORE_CONCEPTS} from "./data-with-examples";
 import {EXAMPLES} from "./data-with-examples";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         setSelectedTab(selectedButton);
     }
 
-    let tabContent = <p>Please select a tab. :></p>
+    let tabContent = <p>Please select a tab.</p>
     if (selectedTab) {
         tabContent = <div id="tab-content">
             <h3>{EXAMPLES[selectedTab].title}</h3>
@@ -35,20 +35,22 @@ function App() {
                 <section id="core-concepts">
                     <h2>What is React?</h2>
                     <ul>
-                        <CoreConcept{...CORE_CONCEPTS[0]}/>
-                        <CoreConcept{...CORE_CONCEPTS[1]}/>
-                        <CoreConcept{...CORE_CONCEPTS[2]}/>
-                        <CoreConcept{...CORE_CONCEPTS[3]}/>
+                        {CORE_CONCEPTS.map(conceptItem => <CoreConcept{...conceptItem}/>)}
+
                     </ul>
                 </section>
 
                 <section id="examples">
                     <h2>Components</h2>
                     <menu>
-                        <TabButton isSelected={selectedTab === 'components'} onClick={() => handleSelect("components")}>Examples</TabButton>
-                        <TabButton isSelected={selectedTab === 'jsx'} onClick={() => handleSelect("jsx")}>JSX</TabButton>
-                        <TabButton isSelected={selectedTab === 'props'} onClick={() => handleSelect("props")}>Props</TabButton>
-                        <TabButton isSelected={selectedTab === 'state'} onClick={() => handleSelect("state")}>State</TabButton>
+                        <TabButton isSelected={selectedTab === 'components'}
+                                   onClick={() => handleSelect("components")}>Examples</TabButton>
+                        <TabButton isSelected={selectedTab === 'jsx'}
+                                   onClick={() => handleSelect("jsx")}>JSX</TabButton>
+                        <TabButton isSelected={selectedTab === 'props'}
+                                   onClick={() => handleSelect("props")}>Props</TabButton>
+                        <TabButton isSelected={selectedTab === 'state'}
+                                   onClick={() => handleSelect("state")}>State</TabButton>
                     </menu>
 
                     {tabContent}
