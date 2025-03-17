@@ -45,10 +45,10 @@ function App() {
                 <section id="examples">
                     <h2>Components</h2>
                     <menu>
-                        <TabButton onClick={() => handleSelect("components")}>Examples</TabButton>
-                        <TabButton onClick={() => handleSelect("jsx")}>JSX</TabButton>
-                        <TabButton onClick={() => handleSelect("props")}>Props</TabButton>
-                        <TabButton onClick={() => handleSelect("state")}>State</TabButton>
+                        <TabButton isSelected={selectedTab === 'components'} onClick={() => handleSelect("components")}>Examples</TabButton>
+                        <TabButton isSelected={selectedTab === 'jsx'} onClick={() => handleSelect("jsx")}>JSX</TabButton>
+                        <TabButton isSelected={selectedTab === 'props'} onClick={() => handleSelect("props")}>Props</TabButton>
+                        <TabButton isSelected={selectedTab === 'state'} onClick={() => handleSelect("state")}>State</TabButton>
                     </menu>
 
                     {tabContent}
@@ -61,3 +61,20 @@ function App() {
 
 
 export default App;
+
+/*import React from 'react';
+
+export default function App() {
+    const [highlighted, setHighlighted] = React.useState(false);
+
+    function handleClick() {
+        setHighlighted(isHighlighted => !isHighlighted);
+    }
+
+    return (
+        <div>
+            <p className={highlighted ? 'active' : ''}>Style me!</p>
+            <button onClick={handleClick}>Toggle style</button>
+        </div>
+    );
+}*/
