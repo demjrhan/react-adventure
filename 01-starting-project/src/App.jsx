@@ -11,8 +11,7 @@ function App() {
             <Header/>
             <main>
                 <CoreConcepts/>
-                <Examples/>
-            </main>
+             </main>
         </>
     );
 }
